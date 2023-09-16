@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>eRegistrar Student Registration - New Student</title>
+  <link rel="stylesheet" href="your-styles.css">
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+  <h1>New Student Form</h1>
+  <div class="form-container">
+    <p>Fields marked with asterisk (*) are required.</p>
+    <form method="post" action="/eregistrar/students/new" th:object="${student}">
+      <fieldset>
+        <div class="form-group">
+          <label ><span class="label-bold">First Name*</span></label>
+          <div>
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-text"></span>
+            <input name="firstName" type="text" th:value="${student.firstName}" autofocus>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label ><span class="label-bold">Middle Name</span></label>
+          <div>
+            <input name="middleName" type="text" th:field="${student.middleName}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label ><span class="label-bold">Last Name*</span></label>
+          <div>
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-text"></span>
+            <input name="lastName" type="text" th:value="${student.lastName}" autofocus>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label ><span class="label-bold">Student Number*</span></label>
+          <div>
+            <span th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}" class="error-text"></span>
+            <input name="studentNumber" type="text" th:field="${student.studentNumber}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label ><span class="label-bold">Enrollment Date*</span></label>
+          <div>
+            <span th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}" class="error-text"></span>
+            <input name="enrollmentDate" type="date" th:field="${student.enrollmentDate}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label ><span class="label-bold">CGPA</span></label>
+          <div>
+            <input name="cgpa" type="text" th:field="${student.cgpa}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label ><span class="label-bold">Is International?*</span></label>
+          <div>
+            <span th:if="${#fields.hasErrors('isInternational')}" th:errors="*{isInternational}" class="error-text"></span>
+            <select name="isInternational" th:field="${student.isInternational}">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label><span class="label-bold">Gender*</span></label>
+          <div>
+            <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="error-text"></span>
+          </div>
+          <div>
+            <input type="radio" th:field="*{gender}" id="male" value="Male">
+            <label for="male">Male</label>
+          </div>
+          <div>
+            <input type="radio" th:field="*{gender}" id="female" value="Female">
+            <label for="female">Female</label>
+          </div>
+          <div>
+            <input type="radio" th:field="*{gender}" id="other" value="Other">
+            <label for="other">Other</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="isFPP"><span class="label-bold">Is FPP Student?</span></label>
+          <div>
+            <input type="checkbox" th:field="*{fpp}" id="isFPP">
+            <label for="isFPP">FPP</label>
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-actions">
+        <a class="std-lnk-btn" href="/eregistrar/students/list">Cancel</a>
+        <input class="std-btn" type="reset" value="Reset">
+        <input class="std-btn" type="submit" value="Add Student">
+      </div>
+    </form>
+  </div>
+</main>
+</body>
+</html>
